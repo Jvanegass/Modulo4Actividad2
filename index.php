@@ -1,50 +1,67 @@
 <?php
-
-// Ejercicio 1: Serie de Fibonacci
-// Esta función genera los primeros 'n' términos de la serie Fibonacci.
-function generarFibonacci($n) {
-    $fibonacci = [0, 1];
-    for ($i = 2; $i < $n; $i++) {
-        $fibonacci[$i] = $fibonacci[$i - 1] + $fibonacci[$i - 2];
-    }
-    return array_slice($fibonacci, 0, $n);
+// Ejercicio 1: Problema de Lista Invertida
+function listaInvertida($array) {
+    return array_reverse($array);
 }
 
-// Ejemplo de uso:
-$n = 10; 
-echo "Los primeros $n términos de la serie Fibonacci son: ";
-print_r(generarFibonacci($n));
+$numeros = [1, 2, 3, 4, 5];
+$resultado = listaInvertida($numeros);
+echo "Lista invertida: ";
+print_r($resultado);
 
 
-// Ejercicio 2: Números Primos
-// Esta función verifica si un número es primo.
-function esPrimo($numero) {
-    if ($numero <= 1) {
-        return false;
-    }
-    for ($i = 2; $i <= sqrt($numero); $i++) {
-        if ($numero % $i == 0) {
-            return false;
+// Ejercicio 2: Problema de Suma de Números Pares
+function sumaNumerosPares($array) {
+    $suma = 0;
+    foreach ($array as $numero) {
+        if ($numero % 2 == 0) {
+            $suma += $numero;
         }
     }
-    return true;
+    return $suma;
 }
 
-// Ejemplo de uso:
-$numero = 29; 
-echo "\nEl número $numero ". (esPrimo($numero) ? "es primo" : "no es primo") . ".\n";
+$numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+$sumaPares = sumaNumerosPares($numeros);
+echo "\nSuma de números pares: $sumaPares\n";
 
 
-// Ejercicio 3: Palíndromos
-// Esta función verifica si una cadena de texto es un palíndromo.
-function esPalindromo($cadena) {
+// Ejercicio 3: Problema de Frecuencia de Caracteres
+function frecuenciaCaracteres($cadena) {
+    $frecuencia = [];
+    $longitud = strlen($cadena);
     
-    $cadena = strtolower(str_replace(' ', '', $cadena));
-    return $cadena === strrev($cadena);
+    for ($i = 0; $i < $longitud; $i++) {
+        $caracter = $cadena[$i];
+        if (isset($frecuencia[$caracter])) {
+            $frecuencia[$caracter]++;
+        } else {
+            $frecuencia[$caracter] = 1;
+        }
+    }
+    return $frecuencia;
 }
 
-// Ejemplo de uso:
-$cadena = "anita lava la tina"; 
-echo "\nLa cadena '$cadena' ". (esPalindromo($cadena) ? "es un palíndromo" : "no es un palíndromo") . ".\n";
+$cadena = "hola mundo";
+$frecuencia = frecuenciaCaracteres($cadena);
+echo "\nFrecuencia de caracteres:\n";
+print_r($frecuencia);
 
+
+// Ejercicio 4: Problema de Bucle Anidado
+function imprimirPiramide($altura) {
+    for ($i = 1; $i <= $altura; $i++) {
+        for ($j = $i; $j < $altura; $j++) {
+            echo " ";
+        }
+        for ($k = 1; $k <= (2 * $i - 1); $k++) {
+            echo "*";
+        }
+        echo "\n";
+    }
+}
+
+$altura = 5;
+echo "\nPirámide de asteriscos:\n";
+imprimirPiramide($altura);
 ?>
